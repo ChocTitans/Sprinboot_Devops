@@ -1,11 +1,8 @@
+FROM openjdk:8
+WORKDIR /work/
 
-# Docker Build Stage
-FROM openjdk:8-jdk-alpine
+COPY target/*.jar /work/gstock-0.0.1-SNAPSHOT.jar
 
-COPY --from=build /opt/app/target/*.jar app.jar
 
-ENV PORT 8081
-EXPOSE $PORT
-
-ENTRYPOINT ["java","-jar","-Xmx1024M","-Dserver.port=${PORT}","app.jar"]
-
+EXPOSE 8081
+CMD ["java","-jar","gstock-0.0.1-SNAPSHOT.jar"]
