@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: hosts
   become: true
   vars:
     container_count: 4
@@ -49,7 +49,7 @@
 
     - name: Pull Docker image
       docker_image:
-        name: "springboot"
+        name: "eltitans/springboot"
         source: pull
 
     - name: Run Docker image
@@ -58,4 +58,4 @@
         image: "eltitans/springboot"
         state: started
         ports:
-          - "8081:8081"
+          - "8082:8082"
