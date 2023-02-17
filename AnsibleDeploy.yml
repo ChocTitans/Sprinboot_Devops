@@ -50,3 +50,4 @@
     - name: Pull Docker image
       docker_image:
         name: "eltitans/springboot"
+        source: pull
