@@ -8,7 +8,7 @@
   tasks:
     - name: Install Java
       apt:
-        name: "openjdk-{{ java_version }}-jdk"
+        name: "jdk-{{ java_version }}"
         state: present
 
     - name: Install Maven
