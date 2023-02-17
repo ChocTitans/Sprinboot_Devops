@@ -51,3 +51,11 @@
       docker_image:
         name: "eltitans/springboot"
         source: pull
+
+    - name: Pull Docker image
+      docker_container:
+        name: "eltitans/springboot"
+        image: "eltitans/springboot"
+        state: started
+        ports:
+          - "8081:8081"
