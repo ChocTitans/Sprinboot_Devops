@@ -1,0 +1,24 @@
+- name: Install Java and Maven
+  become: yes
+  become_user: root
+  hosts: hosts
+  vars:
+    java_version: 17
+    maven_version: 3.8.3
+  tasks:
+    - name: Install Java
+      apt:
+        name: "openjdk-{{ java_version }}-jdk"
+        state: present
+
+    - name: Install Maven
+      apt:
+        name: "maven={{ maven_version }}"
+        state: present
+
+    - name: Set Java and Maven paths
+      shell: |
+        echo 'export JAVA_HOME=/usr/lib/jvm/java-{{ java_version }}-openjdk-amd64' >> ~/.bashrc
+        echo 'export PATH=$PATH:/usr/share/maven/bin:$JAVA_HOME/bin' >> ~/.bashrc
+      environment:
+        PATH: "{{ lookup('env', 'PATH') }}:/usr/share/maven/bin:/usr/lib/jvm/java-{{ java_version }}-openjdk-amd64/bin"
