@@ -25,9 +25,9 @@ pipeline {
         stage('Docker build and Push'){
             steps{
                 echo 'Building & Pushing ...'
-                sh 'docker build -t eltitans/springboot:latest .'
+                sh 'sudo docker build -t eltitans/springboot:latest .'
                 withDockerRegistry([ credentialsId: "DockerHamza", url: "" ]) {
-                    sh "docker push eltitans/springboot:latest"
+                    sh "sudo docker push eltitans/springboot:latest"
 
                }
             }
