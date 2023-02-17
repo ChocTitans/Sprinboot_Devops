@@ -49,5 +49,6 @@
 
     - name: Pull Docker image
       docker_image:
-        name: "eltitans/springboot"
+        name: eltitans/springboot
+        tag: latest
         source: pull
