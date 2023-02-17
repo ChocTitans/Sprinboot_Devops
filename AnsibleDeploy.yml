@@ -49,10 +49,10 @@
 
     - name: Pull Docker image
       docker_image:
-        name: "eltitans/springboot"
+        name: "springboot"
         source: pull
 
-    - name: Pull Docker image
+    - name: Run Docker image
       docker_container:
         name: "springboot"
         image: "eltitans/springboot"
