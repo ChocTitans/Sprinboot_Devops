@@ -25,9 +25,8 @@ pipeline {
         stage('Docker build and Push'){
             steps{
                 echo 'Building & Pushing ...'
-				sh 'sudo chown root:jenkins /run/docker.sock'
-                sh 'docker build -t eltitans/springboot:latest .'
                 withDockerRegistry([ credentialsId: "DockerHamza", url: "" ]) {
+				    sh 'docker build -t eltitans/springboot:latest .'
                     sh "docker push eltitans/springboot:latest"
 
                }
