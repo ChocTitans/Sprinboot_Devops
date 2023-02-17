@@ -17,6 +17,17 @@ pipeline {
             }
         }
 
+        stage('Setup Environment - Ansible') {
+            steps {
+                echo 'Setuping....'
+                ansiblePlaybook credentialsId: 'ansible_ssh', disableHostKeyChecking: true, installation: 'AnsibleAzure', inventory: 'hosts.cfg', playbook: 'AnsibleDeploy.yml'
+                sh 'docker build -t springboot'
+                sh 'docker run -p 8080:8080 -d springboot'
+                sh 'az vm open-port --port 8080 --resource-group DevopsJenskins --name devops'
+            }
+        }
+
+
         stage('Test') {
             steps {
                 sh 'mvn test'
