@@ -22,15 +22,19 @@ pipeline {
                 sh 'mvn test'
             }
         }
-
-        stage('Setup Environment - Ansible') {
-            steps {
-                echo 'Setuping....'
+        stage('Docker build and Push'){
+            steps{
+                echo 'Building & Pushing ...'
                 sh 'docker build -t eltitans/springboot:latest .'
                 withDockerRegistry([ credentialsId: "DockerHamza", url: "" ]) {
                     sh "docker push eltitans/springboot:latest"
-                    
+
                }
+            }
+        }
+        stage('Setup Environment - Ansible') {
+            steps {
+                echo 'Setuping....'
                 ansiblePlaybook credentialsId: 'azureuser2_testVM_Java', disableHostKeyChecking: true, installation: 'AnsibleAzure', inventory: 'hosts.cfg', playbook: 'AnsibleDeploy.yml'
                 sh 'az vm open-port --port 8080 --resource-group DevopsJenskins --name devops'
             }
