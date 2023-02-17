@@ -36,7 +36,6 @@ pipeline {
             steps {
                 echo 'Setuping....'
                 ansiblePlaybook credentialsId: 'azureuser2_testVM_Java', disableHostKeyChecking: true, installation: 'AnsibleAzure', inventory: 'hosts.cfg', playbook: 'AnsibleDeploy.yml'
-                sh 'az vm open-port --port 8080 --resource-group DevopsJenskins --name devops'
             }
         }
 
