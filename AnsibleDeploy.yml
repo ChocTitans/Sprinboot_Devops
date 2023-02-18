@@ -52,3 +52,10 @@
         name: docker.io/eltitans/springboot
         tag: latest
         source: pull
+        
+    - name: Start Docker container
+      docker_container:
+        name: my-spring
+        image: docker.io/eltitans/springboot:latest
+        ports:
+          - "8082:8082"
