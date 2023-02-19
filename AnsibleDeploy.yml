@@ -48,7 +48,7 @@
         name: docker
         
      - name: Delete existent images
-      docker_image:
+       docker_image:
         state: absent
         
     - name: Pull Docker image
