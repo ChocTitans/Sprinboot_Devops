@@ -49,6 +49,7 @@
         
     - name: Delete all Docker image
       docker_image:
+        name: eltitans/springboot
         source: absent
         
     - name: Pull Docker image
