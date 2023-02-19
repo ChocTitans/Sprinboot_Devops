@@ -16,7 +16,7 @@ public class DemoApplication {
 
 	@Bean
 	CommandLineRunner commandLineRunner(ProduitEntreeRepository produitEntreeRepository){
-		return args -> { produitEntreeRepository.save(new ProduitEntree(null,"xd","390DH",30));
+		return args -> { produitEntreeRepository.save(new ProduitEntree(null,"hamza","390DH",30));
 			produitEntreeRepository.save(new ProduitEntree(null,"xdddd","440DH",40));
  produitEntreeRepository.findAll().forEach(p->{
 System.out.println(p.getName());
