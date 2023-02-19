@@ -47,9 +47,9 @@
       pip:
         name: docker
         
-     - name: Delete existent images
-       docker_image:
-        state: absent
+    - name: Delete all Docker image
+      docker_image:
+        source: absent
         
     - name: Pull Docker image
       docker_image:
