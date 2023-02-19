@@ -1,31 +1,32 @@
 package gestion.stock.gstock.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.swing.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
+
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProduitEntree {
-    @jakarta.persistence.Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @javax.persistence.Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
     @Size(min = 4, max = 40)
-    @Column(name = "name", nullable = true)
+    @Column(name = "name")
     private String name;
     @Size(min = 1, max = 10)
-    @Column(name = "prix", nullable = true)
+    @Column(name = "prix")
     private String prix;
     @DecimalMin("2")
-    @Column(name = "quantite", nullable = true)
+    @Column(name = "quantite")
     private int quantite;
 
 }

@@ -9,25 +9,25 @@
 <body>
 <div layout:fragment="content1">
     <div class="col-md-6 offset-3">
-        <form method="post" th:action="@{save}">
+        <form method="post" th:action="@{save(page=${page}, keyword=${keyword})}">
             <div>
                 <label >ID</label>
-                <input class="form-control" type="text" name="Id" th:value="${pro.Id}">
+                <input class="form-control" type="text" name="Id" th:value="${produit.Id}">
             </div>
             <div>
                 <label >Nom du Produit</label>
-                <input class="form-control" type="text" name="name" th:value="${pro.name}">
-                <span class="text-danger" th:errors="${pro.name}"></span>
+                <input class="form-control" type="text" name="name" th:value="${produit.name}">
+                <span class="text-danger" th:errors="${produit.name}"></span>
             </div>
             <div>
                 <label>Prix du Produit</label>
-                <input  class="form-control" type="text" name="prix" th:value="${pro.prix}">
-                <span class="text-danger" th:errors="${pro.prix}"></span>
+                <input  class="form-control" type="text" name="prix" th:value="${produit.prix}">
+                <span class="text-danger" th:errors="${produit.prix}"></span>
             </div>
             <div>
                 <label>Quantité du Produit</label>
-                <input  class="form-control" type="text" name="quantite" th:value="${pro.quantite}">
-                <span class="text-danger" th:errors="${pro.quantite}"></span>
+                <input  class="form-control" type="text" name="quantite" th:value="${produit.quantite}">
+                <span class="text-danger" th:errors="${produit.quantite}"></span>
             </div>
             <button type="submit" class="btn btn-primary">Edit</button>
         </form>

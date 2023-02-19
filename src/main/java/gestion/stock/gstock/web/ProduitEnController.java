@@ -2,7 +2,6 @@ package gestion.stock.gstock.web;
 
 import gestion.stock.gstock.entities.ProduitEntree;
 import gestion.stock.gstock.repositories.ProduitEntreeRepository;
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,9 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,26 +40,41 @@ public class ProduitEnController {
     public String home(){
         return "redirect:/index";
  }
+
+
+
  @GetMapping("/produits")
- public List<ProduitEntree> listProduistEnt(){
+ public List<ProduitEntree> listProduits(){
      return produitEntreeRepository.findAll();
  }
+
+
+
 @GetMapping("/formProduit")
  public String formProduit(Model model){
-        model.addAttribute("pro",new ProduitEntree());
+        model.addAttribute("produit",new ProduitEntree());
      return "formProduit";
  }
+
+
+
+
 @PostMapping(path = "/save")
-public String save(Model model, @Valid ProduitEntree produitEntree, BindingResult bindingResult){
+public String save(Model model, @Valid ProduitEntree produit, BindingResult bindingResult,
+                   @RequestParam(defaultValue = "0") Integer page ,
+                   @RequestParam(defaultValue = "") String keyword){
     if (bindingResult.hasErrors()) return "formProduit";
-    produitEntreeRepository.save(produitEntree);
-    return "redirect:/index";
+    produitEntreeRepository.save(produit);
+    return "redirect:/index?page="+page+"&keyword="+keyword;
 }
+
+
+
     @GetMapping("/editProduit")
-    public String editProduit(Model model,Long id,String keyword, int page){
-        ProduitEntree produitEntree=produitEntreeRepository.findById(id).orElse(null);
-        if(produitEntree==null) throw new RuntimeException("Produit introuvable");
-        model.addAttribute("pro",produitEntree);
+    public String editProduit(Model model,Long id,String keyword, Integer page){
+        ProduitEntree produit=produitEntreeRepository.findById(id).orElse(null);
+        if(produit==null) throw new RuntimeException("Produit introuvable");
+        model.addAttribute("produit",produit);
         model.addAttribute("page",page);
         model.addAttribute("keyword",keyword);
         return "editProduit";

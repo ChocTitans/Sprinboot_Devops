@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      layout:decorate="template1" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      layout:decorate="template1" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -24,17 +25,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="pe:${listProduits}">
-                    <td th:text="${pe.Id}"></td>
-                    <td th:text="${pe.name}"></td>
-                    <td th:text="${pe.prix}"></td>
-                    <td th:text="${pe.quantite}"></td>
-                <td>
-                    <a   onclick="return confirm('Etes vous sure?')"   class="btn btn-danger" th:href="@{delete(id=${pe.Id}, keyword=${keyword}, page=${currentPage})}">Delete</a>
+                <tr th:each="pro:${listProduits}">
+                    <td th:text="${pro.Id}"></td>
+                    <td th:text="${pro.name}"></td>
+                    <td th:text="${pro.prix}"></td>
+                    <td th:text="${pro.quantite}"></td>
+
+                <td sec:authorize="hasRole('EMPLOYEE')">
+                    <a   onclick="return confirm('Etes vous sure?')"   class="btn btn-danger" th:href="@{delete(id=${pro.Id}, keyword=${keyword}, page=${currentPage})}">Delete</a>
 
                 </td>
-                    <td>
-                        <a  class="btn btn-success" th:href="@{editProduit(id=${pe.Id})}">Edit</a>
+                    <td sec:authorize="hasRole('EMPLOYEE')">
+                        <a  class="btn btn-success" th:href="@{editProduit(id=${pro.Id})}">Edit</a>
 
                     </td>
                 </tr>
