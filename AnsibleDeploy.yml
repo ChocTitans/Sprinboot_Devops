@@ -47,10 +47,14 @@
       pip:
         name: docker
         
-    - name: Delete all Docker image
-      docker_image:
-        name: eltitans/springboot
+
+    - name: Stop and remove the container, and remove the image
+      docker_container:
+        name: my_spring
         state: absent
+      docker_image:
+        name: eltitans/springboot:latest
+        force: yes
         
     - name: Pull Docker image
       docker_image:
