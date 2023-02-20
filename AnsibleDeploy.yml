@@ -49,8 +49,13 @@
 
     - name: Stop Docker image
       docker_container:
-        name: my_spring
         state: absent
+        all_containers: yes
+
+    - name: Remove Docker image
+      docker_image:
+        name: eltitans/springboot:latest
+        force: yes
 
     - name: Pull Docker image
       docker_image:
