@@ -2,6 +2,7 @@ package gestion.stock.gstock.web;
 
 import gestion.stock.gstock.entities.ProduitEntree;
 import gestion.stock.gstock.repositories.ProduitEntreeRepository;
+import gestion.stock.gstock.repositories.ProduitSortieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ProduitEnController {
     private ProduitEntreeRepository produitEntreeRepository;
+    private ProduitSortieRepository produitSortieRepository;
 
     @GetMapping(path = "/index")
     public String produitEntree(Model model, @RequestParam(name = "page",defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "5") int size,
@@ -30,9 +32,11 @@ public class ProduitEnController {
         model.addAttribute("keyword",keyword);
         return "ProduitsEntree";
     }
+    {}
+
 
     @GetMapping("/delete")
-    public String delete(Long id,String keyword,int page){
+    public String delete(Model model,Long id,String keyword,Integer page){
         produitEntreeRepository.deleteById(id);
         return "redirect:/index?page="+page+"&keyword="+keyword;
     }
@@ -52,7 +56,8 @@ public class ProduitEnController {
 
 @GetMapping("/formProduit")
  public String formProduit(Model model){
-        model.addAttribute("produit",new ProduitEntree());
+        ProduitEntree produit =new ProduitEntree();
+        model.addAttribute("produit",produit);
      return "formProduit";
  }
 
@@ -60,7 +65,7 @@ public class ProduitEnController {
 
 
 @PostMapping(path = "/save")
-public String save(Model model, @Valid ProduitEntree produit, BindingResult bindingResult,
+private String save(Model model, @Valid  ProduitEntree produit, BindingResult bindingResult,
                    @RequestParam(defaultValue = "0") Integer page ,
                    @RequestParam(defaultValue = "") String keyword){
     if (bindingResult.hasErrors()) return "formProduit";

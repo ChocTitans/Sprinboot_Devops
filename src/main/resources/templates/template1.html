@@ -13,13 +13,10 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
   <div class="container-fluid">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" href="@{index}">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+        <a class="nav-link active" th:href="@{index}">Home</a>
       </li>
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+        <a sec:authorize="hasRole('EMPLOYEE')" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
           Stock</a>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" th:href="@{/formProduit}">Nouveau Produit</a></li>

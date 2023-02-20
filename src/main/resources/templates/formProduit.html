@@ -4,12 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Form Produit</title>
-    <link rel="stylesheet"href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+
 </head>
 <body>
 <div layout:fragment="content1">
     <div class="col-md-6 offset-3">
-        <form method="post" th:action="@{save}">
+        <form method="post" th:action="@{save(page=${page}, keyword=${keyword})}">
             <div>
                 <label>Nom du Produit</label>
                 <input  class="form-control" type="text" name="name" th:value="${produit.name}">
@@ -21,17 +22,13 @@
                 <span class="text-danger" th:errors="${produit.prix}"></span>
             </div>
             <div>
-                <label>Quantité du Produit</label>
+                <label>Quantite du Produit</label>
                 <input  class="form-control" type="text" name="quantite" th:value="${produit.quantite}">
                 <span class="text-danger" th:errors="${produit.quantite}"></span>
             </div>
             <button type="submit" class="btn btn-primary">Save</button>
         </form>
-
     </div>
-
-
-
 </div>
 </body>
 </html>

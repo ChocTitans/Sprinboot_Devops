@@ -19,7 +19,7 @@ public class ProduitEntree {
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-    @Size(min = 4, max = 40)
+    @Size(min = 1, max = 40)
     @Column(name = "name")
     private String name;
     @Size(min = 1, max = 10)
@@ -29,4 +29,35 @@ public class ProduitEntree {
     @Column(name = "quantite")
     private int quantite;
 
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPrix() {
+        return prix;
+    }
+
+    public void setPrix(String prix) {
+        this.prix = prix;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
 }
