@@ -47,15 +47,15 @@
       pip:
         name: docker
 
-    - name: Stop Docker image
-      docker_container:
-        state: absent
-        all_containers: yes
+    - name: Get list of all container IDs
+      command: docker ps -aq
+      register: container_ids
 
-    - name: Remove Docker image
-      docker_image:
-        name: eltitans/springboot:latest
-        force: yes
+    - name: Stop and remove all containers
+      docker_container:
+        name: "{{ item }}"
+        state: absent
+      loop: "{{ container_ids.stdout_lines }}"
 
     - name: Pull Docker image
       docker_image:
