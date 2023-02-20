@@ -2,7 +2,6 @@ package gestion.stock.gstock.web;
 
 import gestion.stock.gstock.entities.ProduitEntree;
 import gestion.stock.gstock.repositories.ProduitEntreeRepository;
-import gestion.stock.gstock.repositories.ProduitSortieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +19,6 @@ import java.util.List;
 @AllArgsConstructor
 public class ProduitEnController {
     private ProduitEntreeRepository produitEntreeRepository;
-    private ProduitSortieRepository produitSortieRepository;
 
     @GetMapping(path = "/index")
     public String produitEntree(Model model, @RequestParam(name = "page",defaultValue = "0") int page, @RequestParam(name = "size",defaultValue = "5") int size,
