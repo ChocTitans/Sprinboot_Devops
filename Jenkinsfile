@@ -5,7 +5,6 @@ pipeline {
 
         stage('Git'){
             steps{
-                echo 'Test git'
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'SSH_Github_Azure', url: 'git@github.com:ChocTitans/Sprinboot_Devops.git']]])	
 
             }
@@ -32,12 +31,12 @@ pipeline {
                }
             }
         }
-        stage('Setup Environment - Ansible') {
+        /*stage('Setup Environment - Ansible') {
             steps {
                 echo 'Setuping....'
                 ansiblePlaybook credentialsId: 'azureuser2_testVM_Java', disableHostKeyChecking: true, installation: 'AnsibleAzure', inventory: 'hosts.cfg', playbook: 'AnsibleDeploy.yml'
             }
-        }
+        }*/
 
 
   
